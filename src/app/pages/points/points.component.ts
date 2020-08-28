@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { User } from '../../models/user.model';
 import { Recharge } from '../../models/recharge.model';
 import { UserService } from '../../services/user/user.service';
 import { RechargeService } from '../../services/recharge/recharge.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-points',
@@ -30,7 +31,9 @@ export class PointsComponent implements OnInit {
 
   constructor(
     public _userService: UserService,
-    public _rechargeService: RechargeService
+    public _rechargeService: RechargeService,
+    private zone: NgZone,
+    public router: Router
   ) { }
 
   ngOnInit(): void {
@@ -50,15 +53,29 @@ export class PointsComponent implements OnInit {
     this.formFriend = new FormGroup({
       movilFriend: new FormControl(null, Validators.required)
     });
+
+    if (this.user.movil === '999999999') {
+      Swal.fire({
+        title: 'Por favor registra tu número de celular',
+        text: 'Este se usará para realizar el sorteo',
+        icon: 'info',
+        confirmButtonText: 'OK!'
+      });
+      this.zone.run(() =>
+        this.router.navigate(['/profile'])
+      );
+    }
   }
 
   loadRecharges() {
     this._rechargeService.getRecharges()
       .subscribe((resp: any) => {
-        // console.log(resp);
+        console.log(resp);
         this.countRecharges = resp.count;
         this.recharges = resp.recharges;
-        this.totalPoints = resp.totalPoints[0].total;
+        if (resp.totalPoints.length > 0) {
+          this.totalPoints = resp.totalPoints[0].total;
+        }
         const tt = resp.totalCheck.find(x => x._id === true);
         const tf = resp.totalCheck.find(x => x._id === false);
         if (tt) {

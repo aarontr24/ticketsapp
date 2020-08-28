@@ -81,13 +81,13 @@ export class LoginComponent implements OnInit {
       remember: this.remember
     });
 
-    this.formRegister.setValue({
-      name: 'Test1',
-      email: 'test1@hcs.com',
-      movil: '980958825',
-      pass1: '123456',
-      pass2: '123456'
-    });
+    // this.formRegister.setValue({
+    //   name: 'Test1',
+    //   email: 'test1@hcs.com',
+    //   movil: '980958825',
+    //   pass1: '123456',
+    //   pass2: '123456'
+    // });
 
   }
 
@@ -108,9 +108,23 @@ export class LoginComponent implements OnInit {
       const token = googleUser.getAuthResponse().id_token;
       this._userService.loginGoogle(token)
         .subscribe(ok => {
-          this.zone.run(() =>
-            this.router.navigate(['/home'])
-          );
+          // console.log(ok);
+          if (ok) {
+            Swal.fire({
+              title: 'Por favor registra tu número de celular',
+              text: 'Este se usará para realizar el sorteo',
+              icon: 'info',
+              confirmButtonText: 'OK!'
+            });
+            this.zone.run(() =>
+              this.router.navigate(['/profile'])
+            );
+          } else {
+            this.zone.run(() =>
+              this.router.navigate(['/points'])
+            );
+          }
+          
         });
       // this.router.navigate(['/home']));
       // console.log(token);
@@ -138,23 +152,31 @@ export class LoginComponent implements OnInit {
     this._userService.createUser(user)
       // .subscribe(resp => this.switch = true);
       .subscribe(ok => {
+        Swal.fire({
+          title: 'Por favor verifica tu número de celular',
+          text: 'Este se usará para realizar el sorteo',
+          icon: 'info',
+          confirmButtonText: 'OK!'
+        });
         this.zone.run(() =>
-          this.router.navigate(['/home'])
+          this.router.navigate(['/profile'])
         );
       });
   }
 
   loginUser() {
-    // console.log(this.formLogin.value);
-    if (this.formRegister.invalid) {
-      Swal.fire({
-        title: 'Error!',
-        text: 'Do you want to continue',
-        icon: 'error',
-        confirmButtonText: 'Cool'
-      });
-      return;
-    }
+    // console.log(!this.formLogin.invalid);
+    // console.log(!this.formLogin.invalid);
+    // console.log(!this.formLogin.invalid);
+    // if (!this.formRegister.invalid) {
+    //   Swal.fire({
+    //     title: 'Error!',
+    //     text: 'Debe ingresar correo / contraseña',
+    //     icon: 'error',
+    //     confirmButtonText: 'OK!'
+    //   });
+    //   return;
+    // }
 
     const user = new User(
       null,
@@ -165,7 +187,7 @@ export class LoginComponent implements OnInit {
     this._userService.login(user, this.formLogin.value.remember)
       .subscribe(ok => {
         this.zone.run(() =>
-          this.router.navigate(['/home'])
+          this.router.navigate(['/points'])
         );
       });
 

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { User } from '../../models/user.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { URL_SERVICES } from '../../config/config';
@@ -17,7 +17,8 @@ export class UserService {
 
   constructor(
     public http: HttpClient,
-    public router: Router
+    public router: Router,
+    private zone: NgZone
     ) {
     console.log('Servicio de usuario listo');
     this.loadStorage();
@@ -48,8 +49,7 @@ export class UserService {
     this.token = '';
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-
-    this.router.navigate(['/home']);
+    
   }
 
   loginGoogle(token: string) {
@@ -58,7 +58,13 @@ export class UserService {
       .pipe(
         map((resp: any) => {
           this.saveStorage(resp.token, resp.user);
-          return true;
+          return resp.new;
+        }),
+        catchError(err => {
+          // console.log(err.error.message);
+          Swal.fire('Login Incorrecto', err.error.message, 'error');
+          // return err;
+          return throwError(err);
         })
       );
   }
@@ -81,7 +87,7 @@ export class UserService {
           return true;
         }),
         catchError(err => {
-          console.log(err.error.message);
+          // console.log(err.error.message);
           Swal.fire('Login Incorrecto', err.error.message, 'error');
           // return err;
           return throwError(err);

@@ -27,12 +27,13 @@
                     <form ngNativeValidate [formGroup]="formLogin" (ngSubmit)="loginUser()" class="login-form" action="#" method="post">
                         <div class="form-group">
                             <label #emailogin class="label" for="loginemail">Correo electrónico</label>
-                            <input type="email" formControlName="loginEmail" (focus)="textEffect('emailogin')" name="loginEmail" id="loginemail" required>
+                            <input type="email" formControlName="loginEmail" (focus)="textEffect('emailogin')" id="loginemail" required>
                         </div>
 
                         <div class="form-group">
                             <label #passlogin class="label" for="loginPassword">Contraseña</label>
-                            <input type="password" formControlName="loginPass" (focus)="textEffect('passlogin')" name="loginPass" id="loginPassword" required>
+                            <input type="password" formControlName="loginPass" (focus)="textEffect('passlogin')" id="loginPassword" required>
+                            <!-- <p>{{formLogin.invalid}}</p> -->
                         </div>
 
                         <div class="form-group">
@@ -84,7 +85,7 @@
 
                         <div class="form-group">
                             <label #movil class="label" for="phone">Número de celular</label>
-                            <input formControlName="movil" type="text" name="movil" id="phone" (focus)="textEffect('movil')" required>
+                            <input formControlName="movil" appOnlyNumber maxlength="9" type="text" name="movil" id="phone" (focus)="textEffect('movil')" required>
                         </div>
 
                         <div class="form-group">

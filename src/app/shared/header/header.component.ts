@@ -49,5 +49,13 @@ export class HeaderComponent implements OnInit {
     );
   }
 
+  exit() {
+    this._userServices.logout();
+    this.zone.run(() =>
+          this.route.navigate(['/home'])
+          
+        );
+  }
+
 
 }

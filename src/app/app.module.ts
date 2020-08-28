@@ -22,7 +22,7 @@ import { ResponseResetComponent } from './login/response-reset/response-reset.co
     ResponseResetComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     SharedModule,
     PagesModule,

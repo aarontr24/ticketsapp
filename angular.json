@@ -51,7 +51,7 @@
                                 },
                                 {
                                     "type": "anyComponentStyle",
-                                    "maximumWarning": "6kb",
+                                    "maximumWarning": "9kb",
                                     "maximumError": "10kb"
                                 }
                             ]
@@ -127,12 +127,10 @@
                     "configurations": {
                         "production": {
                             "outputHashing": "media",
-                            "fileReplacements": [
-                                {
-                                    "replace": "src/environments/environment.ts",
-                                    "with": "src/environments/environment.prod.ts"
-                                }
-                            ],
+                            "fileReplacements": [{
+                                "replace": "src/environments/environment.ts",
+                                "with": "src/environments/environment.prod.ts"
+                            }],
                             "sourceMap": false,
                             "optimization": true
                         }

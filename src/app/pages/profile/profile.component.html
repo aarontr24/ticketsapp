@@ -1,0 +1,43 @@
+<div class="row justify-content-center m-3 ">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title namer">Perfil de usuario</h4>
+            <h6 class="card-subtitle m-3 namer3">{{_userService.user.name}}</h6>
+
+            <form ngNativeValidate [formGroup]="formUpdate" (ngSubmit)="updateUser()" class="form p-t-20">
+
+                <label for="exampleInputuname">Nombre de usuario</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ti-user"></i></span>
+                    </div>
+                    <input type="text" formControlName="name" name="name" class="form-control" id="exampleInputuname" placeholder="Nombre de usuario">
+                </div>
+                <label for="exampleInputEmail1">Correo electrónico</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ti-email"></i></span>
+                    </div>
+                    <input type="email" formControlName="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Correo electrónico">
+                </div>
+                <label for="pwd1">Celular</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ti-mobile"></i></span>
+                    </div>
+                    <input type="string" appOnlyNumber maxlength="9" formControlName="movil" name="movil" class="form-control" id="pwd1" placeholder="Celular">
+                </div>
+                <!-- <div class="input-group mb-3">
+                    <label for="pwd2">Confirm Password</label>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ti-lock"></i></span>
+                    </div>
+                    <input type="password" class="form-control" id="pwd2" placeholder="Enter email">
+                </div> -->
+
+                <button type="submit" [disabled]="!formUpdate.valid" class="btn btn-danger m-r-10"><i class="ti-save pr-2"></i>Guardar</button>
+                <button type="button" routerLink="/home" class="btn btn-dark ml-2">Regresar</button>
+            </form>
+        </div>
+    </div>
+</div>

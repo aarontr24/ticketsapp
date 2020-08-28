@@ -1,0 +1,51 @@
+<div class="card">
+
+    <div class="card-body">
+        <div class="table-responsive-sm">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Usuario Paga</th>
+                        <th scope="col">Monto</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Check Pago</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of recharges; let i=index">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{item.user['name']}}</td>
+                        <td>{{item.userPay['name']}}</td>
+                        <td>{{item.amount}}</td>
+                        <td>{{item.time}}</td>
+                        <td>
+                            <p *ngIf="!item.checkPay"><span class="badge badge-pill badge-warning">Pendiente</span></p>
+                            <p *ngIf="item.checkPay"><span class="badge badge-pill badge-success">OK!</span></p>
+                        </td>
+                        <td>
+                            <button class="btn btn-success mr-3" (click)="checkRecharge(item)"><i class="fa fa-save"></i></button>
+                            <button class="btn btn-danger" (click)="deleteRecharge(item)" [disabled]="item.checkPay"><i class="fa fa-trash"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row m-auto">
+            <div class="col">
+                Total Pendiente:
+                <h3><span class="badge badge-pill badge-danger">{{totalFalse}}</span></h3>
+
+            </div>
+            <div class="col">
+                Total Pagado:
+                <h3><span class="badge badge-pill badge-success">{{totalTrue}}</span></h3>
+            </div>
+        </div>
+
+
+    </div>
+</div>

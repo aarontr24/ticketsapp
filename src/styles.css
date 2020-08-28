@@ -1,0 +1,112 @@
+/* You can add global styles to this file, and also import other style files */
+
+@font-face {
+    font-family: Amatic SC;
+    src: url(assets/css/fonts/AmaticSC-Bold.ttf);
+}
+
+@font-face {
+    font-family: American;
+    src: url(assets/css/fonts/American.ttf);
+}
+
+@font-face {
+    font-family: Magic;
+    src: url(assets/css/fonts/Magic.ttf);
+}
+
+.menu {
+    background-color: #dd4b39;
+}
+
+.namer {
+    font: 50px/1em Amatic SC;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.namer2 {
+    font: 28px/1em Magic;
+    padding-top: 10px;
+    text-shadow: 2px 2px 2px #dd4b39;
+    line-height: 1.2em;
+}
+
+.namer3 {
+    font: 18px/1em Magic;
+    line-height: 1.2em;
+}
+
+.namer4 {
+    font: 35px/1em Magic;
+    line-height: 1.2em;
+    color: #dd4b39;
+    text-shadow: 2px 2px 2px #682303;
+}
+
+.namer5 {
+    font: 40px/1em Magic;
+    padding-top: 10px;
+    text-shadow: 2px 2px 2px #dd4b39;
+    line-height: 1.2em;
+}
+
+.text-menu {
+    font: 30px/2em Amatic SC;
+    text-align: center;
+    padding-top: 10px;
+    /* text-shadow: 2px 2px 2px #343a40; */
+    text-shadow: 2px 2px 2px #682303;
+}
+
+.card-body a,
+.pointer {
+    cursor: pointer;
+}
+
+.plusImg {
+    width: 200px;
+}
+
+.number {
+    width: 40px;
+}
+
+.card-text {
+    line-height: 0cm;
+}
+
+.bloque {
+    background-color: #343a40;
+}
+
+.history {
+    max-width: 100%;
+    margin: auto;
+}
+
+.recharg {
+    text-align: center;
+    font-size: 1.6em;
+    width: 50%;
+}
+
+.friend {
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.premio {
+    padding: 30px;
+    border-radius: 50%;
+}
+
+.active-link {
+    /* color: #dd4b39 !important;
+    background-color: mediumblue; */
+    font-size: 1.3em;
+}
+
+.logossv {
+    height: 50%;
+}

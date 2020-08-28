@@ -1,0 +1,143 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container row">
+        <a class="navbar-brand" href="#"><img src="./assets/imgs/logo.png" alt="#" class="logo" /></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-links" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse text-capitalize" id="nav-links">
+            <ul class="navbar-nav ml-auto text-menu">
+                <li class="nav-item">
+                    <a class="nav-link" href="" routerLink="/home" routerLinkActive="active-link">Inicio <span class="sr-only">(current)</span></a>
+                </li>
+                <li *ngIf="user" class="nav-item">
+                    <a class="nav-link" href="" routerLink="/points" routerLinkActive="active-link">Mis recargas </a>
+                </li>
+                <li *ngIf="user && (user.userRole==='ADMIN')" class="nav-item">
+                    <a class="nav-link" href="" routerLink="/recharges" routerLinkActive="active-link">Recargas </a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#service">services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#test">testimonial</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">contact us</a>
+                </li> -->
+                <li *ngIf="!user">
+                    <a routerLink="/login" class="nav-link log">Ingresar/Registrar</a>
+                </li>
+                <li *ngIf="user" class="nav-item dropdown">
+                    <!-- Example single danger button -->
+                    <!-- <div class="btn-group"> -->
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{user.name}}
+                          </a>
+                    <!-- <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{user.name}}
+                        </button> -->
+                    <div class="dropdown-menu menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item namer3" href="" routerLink="/profile">Perfil</a>
+                        <a class="dropdown-item namer3" href="" (click)="_userServices.logout()">Salir</a>
+                    </div>
+                    <!-- </div> -->
+                </li>
+                <!-- <li class="nav-item search">
+                    <a class="nav-link search-link" href=""><i class="fas fa-search"></i></a>
+                    <form>
+                        <input type="search">
+                    </form>
+                </li> -->
+            </ul>
+        </div>
+    </div>
+</nav>
+<header #divHeader id="home">
+    <div class="content">
+        <div class="d-flex align-items-center flex-column justify-content-center">
+            <h1 class=" namer2 ">Bienvenidos a nuestra rifa <br>en<strong class="namer4">Red</strong>ados con los sin voz</h1>
+            <p class="namer3">De esta manero nos estas apoyando a sostener nuestro refugio, y darle a nuestros sin voz, todo lo que necesiten hasta que encuentren un hogar</p>
+            <button *ngIf="!user" class="btn btn-danger namer" href="" (click)="goLogin()">
+                <span>¡¡REGISTRATE!!</span>
+                <!-- <i class="fas fa-long-arrow-alt-right fa-2x"></i> -->
+            </button>
+            <button *ngIf="user" class="btn btn-danger namer" href="" (click)="goRecharge()">
+                <span>¡¡APOYANOS!!</span>
+                <!-- <i class="fas fa-long-arrow-alt-right fa-2x"></i> -->
+            </button>
+        </div>
+    </div>
+    <!-- <div id="slideToNext" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="assets/imgs/moly.jpeg" class="d-block w-100 ">
+            </div>
+            <div class=" carousel-item ">
+                <img src="assets/imgs/header.jpg " class="d-block w-100 ">
+            </div>
+            <div class="carousel-item ">
+                <img src="assets/imgs/header.jpg " class="d-block w-100 ">
+            </div>
+        </div>
+        <a class="carousel-control-prev " href="#slideToNext" role="button " data-slide="prev ">
+            <i class="fas fa-chevron-left "></i>
+            <span class="sr-only ">Previous</span>
+        </a>
+        <a class="carousel-control-next " href="#slideToNext" role="button " data-slide="next ">
+            <i class="fas fa-chevron-right "></i>
+            <span class="sr-only ">Next</span>
+        </a>
+    </div> -->
+    <div #slide id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="assets/imgs/fondoh.png" alt="First slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="assets/imgs/fondoh3.png" alt="Third slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="assets/imgs/fondoh4.png" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="assets/imgs/fondoh2.png" alt="Third slide">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <i class="fas fa-chevron-left" aria-hidden="true"></i>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</header>
+<!-- <script>
+    $(function() {
+
+        'use strict';
+
+        var winH = $(window).height();
+
+        $('header, .slide').height('100px');
+
+        $('.navbar a.search-link').on('click', function() {
+            $(this).siblings('form').fadeToggle();
+        });
+
+        $('.navbar ul.navbar-nav li a, footer ul.main-list li a').on('click', function(e) {
+
+            var getAttr = $(this).attr('href');
+
+            e.preventDefault();
+            $('html').animate({
+                scrollTop: $(getAttr).offset().top
+            }, 1000);
+        });
+    });
+</script> -->

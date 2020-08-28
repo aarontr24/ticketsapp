@@ -1,0 +1,132 @@
+<div class="card text-center">
+    <div class="card-header namer jittery">
+        Bienvenid@: {{user.name}}
+    </div>
+    <div class="card-body">
+        <h3 class="card-title">
+            Tus oportunidades de ganar son:
+        </h3>
+        <h1 class="card-text"><button (click)="onClick()" title='Mira tu historial' class="btn btn-success namer5">+{{totalPoints}}</button></h1>
+        <a (click)="focusAmount()" class="btn btn-primary">¡Aumenta tus posibilidades ganar!</a>
+    </div>
+</div>
+
+<div class="row history" *ngIf="history">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header text-center namer">
+                Historial
+            </div>
+            <div class="card-body">
+                <div class="table-responsive-sm">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Usuario</th>
+                                <th scope="col">Monto</th>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Check Pago</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of recharges; let i=index">
+                                <th scope="row">{{i+1}}</th>
+                                <td>{{item.user['name']}}</td>
+                                <td>{{item.amount}}</td>
+                                <td>{{item.time}}</td>
+                                <td>
+                                    <p *ngIf="!item.checkPay"><span class="badge badge-pill badge-warning">Pendiente</span></p>
+                                    <p *ngIf="item.checkPay"><span class="badge badge-pill badge-success">OK!</span></p>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger" (click)="deleteRecharge(item)" [disabled]="item.checkPay"><i class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="row m-auto">
+                    <div class="col">
+                        Total Pendiente:
+                        <h3><span class="badge badge-pill badge-danger">{{totalFalse}}</span></h3>
+
+                    </div>
+                    <div class="col">
+                        Total Pagado:
+                        <h3><span class="badge badge-pill badge-success">{{totalTrue}}</span></h3>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card-columns">
+    <div class="card text-center">
+        <a (click)="addRecharge(3)"><img src="../../../assets/imgs/plus3.png" class="card-img-top plusImg m-auto pointer" alt="..."></a>
+        <!-- <div class="card-body">
+            <h5 class="card-title">Card title that wraps to a new line</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        </div> -->
+    </div>
+    <div class="card p-3 text-center">
+        <a (click)="addRecharge(5)"><img src="../../../assets/imgs/plus5.png" class="card-img-top pointer" alt="..."></a>
+    </div>
+    <div class="card text-center">
+        <a (click)="addRecharge(10)"><img src="../../../assets/imgs/plus10.jpeg" class="card-img-top pointer" alt="..."></a>
+    </div>
+    <div name="recharge" class="card bg-dark text-white text-center p-3">
+        <blockquote class="blockquote mb-0">
+            <p>Añade el monto que quieras:</p>
+            <form ngNativeValidate [formGroup]="formAmount" (ngSubmit)="addRecharge(formAmount.value.amount)">
+                <div class="form-group">
+                    <input #amount type="number" formControlName="amount" name="amount" class="form-control recharg m-auto" id="" aria-describedby="emailHelp">
+                </div>
+                <button type="submit" class="btn btn-primary">Añadir</button>
+            </form>
+        </blockquote>
+    </div>
+    <div class="card">
+        <div class="card-body text-center bg-warning">
+            <h5 class="card-title">Regala oportunidades de ganar a tus amigos</h5>
+            <p class="card-text"><img src="../../../assets/imgs/one.jpg" alt="" class="number"> Consulta si esta registrado el celular de tu amig@</p>
+            <p class="card-text"><img src="../../../assets/imgs/two.jpg" alt="" class="number">Selecciona o agrega un monto</p>
+            <form ngNativeValidate [formGroup]="formFriend" (ngSubmit)="findFriend()">
+                <div class="form-group">
+                    <input type="text" appOnlyNumber maxlength="9" formControlName="movilFriend" name="movilFriend" class="form-control friend" id="" aria-describedby="emailHelp">
+                </div>
+                <button type="submit" class="btn btn-primary mb-2">Consultar</button>
+            </form>
+            <!-- <p class="card-text"><small class="text-muted">¡Ten en cuenta que tu amigo debe estar registrado!</small></p> -->
+            <div class="blockquote bloque text-white">
+                <p>{{userFriend.name}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="card p-3 text-center">
+        <a (click)="addRecharge(100)"><img src="../../../assets/imgs/plus100.png" class="card-img-top pointer" alt="..."></a>
+    </div>
+
+    <div class="card text-center">
+        <a (click)="addRecharge(20)"><img src="../../../assets/imgs/plus20.jpg" class="card-img-top plusImg m-auto pointer" alt="..."></a>
+    </div>
+    <div class="card text-center">
+        <a (click)="addRecharge(30)"><img src="../../../assets/imgs/plus30.png" class="card-img-top plusImg m-auto pointer" alt="..."></a>
+    </div>
+    <div class="card p-3 text-center">
+        <a (click)="addRecharge(50)"><img src="../../../assets/imgs/plus50.png" class="card-img-top plusImg m-auto pointer" alt="..."></a>
+    </div>
+
+    <!-- <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is another card with title and supporting text below. This card has some additional content to make it slightly taller overall.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+    </div> -->
+</div>

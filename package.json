@@ -12,10 +12,12 @@
         "serve:ssr": "node dist/ticket-shop/server/main.js",
         "build:ssr": "ng build --prod && ng run ticket-shop:server:production",
         "prerender": "ng run ticket-shop:prerender",
-        "postinstall": "ng build --aot -prod"
+        "heroku-postbuild": "ng build --prod"
     },
     "private": true,
     "dependencies": {
+        "@angular/cli": "^10.0.8",
+        "@angular/compiler-cli": "^9.0.7",
         "@angular/animations": "~9.0.1",
         "@angular/common": "~9.0.1",
         "@angular/compiler": "~9.0.1",

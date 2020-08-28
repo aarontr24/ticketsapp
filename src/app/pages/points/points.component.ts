@@ -144,7 +144,7 @@ export class PointsComponent implements OnInit {
             // console.log(ok);
             Swal.fire({
               title: 'Por apoyar a nuestros sin voz',
-              text: 'Realiza tu deposito en las cuentas al final de la página y envia tu confirmación al 989079025. El pago se hará efectivo dentro de las 24 horas',
+              text: 'Realiza tu deposito en las cuentas al final de la página y envia tu confirmación al 989079025 (Paola Arevalo - Presidenta SSVAQP). El pago se hará efectivo dentro de las 24 horas',
               width: 400,
               padding: '.5em',
               background: '#fff url(../../assets/imgs/patitas.jpg)',

@@ -12,7 +12,7 @@
         "serve:ssr": "node dist/ticket-shop/server/main.js",
         "build:ssr": "ng build --prod && ng run ticket-shop:server:production",
         "prerender": "ng run ticket-shop:prerender",
-        "postinstall": "ng build --aot -prod"
+        "postinstall": "ng build --aot --prod"
     },
     "private": true,
     "dependencies": {
